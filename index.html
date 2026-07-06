@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f2f2f2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.calculator{
+    width:340px;
+    background:#1c1c1c;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 10px 20px rgba(0,0,0,.3);
+}
+
+#display{
+    width:100%;
+    height:80px;
+    border:none;
+    background:#000;
+    color:#fff;
+    font-size:40px;
+    text-align:right;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+button{
+    height:65px;
+    border:none;
+    border-radius:50%;
+    font-size:24px;
+    cursor:pointer;
+}
+
+.number{
+    background:#505050;
+    color:white;
+}
+
+.operator{
+    background:#ff9500;
+    color:white;
+}
+
+.function{
+    background:#d4d4d2;
+    color:black;
+}
+
+.zero{
+    grid-column:span 2;
+    border-radius:40px;
+    text-align:left;
+    padding-left:28px;
+}
+
+button:hover{
+    opacity:.85;
+}
+</style>
+</head>
+<body>
+
+<div class="calculator">
+
+<input type="text" id="display" readonly>
+
+<div class="buttons">
+
+<button class="function" onclick="clearDisplay()">AC</button>
+<button class="function" onclick="deleteLast()">⌫</button>
+<button class="function" onclick="add('%')">%</button>
+<button class="operator" onclick="add('/')">÷</button>
+
+<button class="number" onclick="add('7')">7</button>
+<button class="number" onclick="add('8')">8</button>
+<button class="number" onclick="add('9')">9</button>
+<button class="operator" onclick="add('*')">×</button>
+
+<button class="number" onclick="add('4')">4</button>
+<button class="number" onclick="add('5')">5</button>
+<button class="number" onclick="add('6')">6</button>
+<button class="operator" onclick="add('-')">−</button>
+
+<button class="number" onclick="add('1')">1</button>
+<button class="number" onclick="add('2')">2</button>
+<button class="number" onclick="add('3')">3</button>
+<button class="operator" onclick="add('+')">+</button>
+
+<button class="number zero" onclick="add('0')">0</button>
+<button class="number" onclick="add('.')">.</button>
+<button class="operator" onclick="calculate()">=</button>
+
+</div>
+
+</div>
+
+<script>
+let display = document.getElementById("display");
+
+function add(value){
+    display.value += value;
+}
+
+function clearDisplay(){
+    display.value = "";
+}
+
+function deleteLast(){
+    display.value = display.value.slice(0,-1);
+}
+
+function calculate(){
+    try{
+        display.value = eval(display.value);
+    }
+    catch{
+        display.value = "Error";
+    }
+}
+</script>
+
+</body>
+</html>
